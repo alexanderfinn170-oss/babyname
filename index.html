@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>বাংলাদেশি বেবি নেম জেনারেটর</title>
-<meta name="description" content="বাবা ও মায়ের নাম অনুযায়ী সুন্দর বাংলাদেশের শিশুদের নাম জেনারেট করুন।">
-<meta name="keywords" content="বাংলাদেশি বেবি নাম, বাচ্চার নাম, শিশু নাম, নেম জেনারেটর">
+<title>নবজাতক আরবি নাম জেনারেটর</title>
+<meta name="description" content="আপনার সন্তানদের জন্য সুন্দর আরবি নাম জেনারেট করুন। ছেলে বা মেয়ের জন্য নাম এবং বাবা/মায়ের নাম অনুযায়ী ইবনে/বিনতে সহ।">
+<meta name="keywords" content="আরবি নাম, নবজাতক নাম, বেবি নাম জেনারেটর, ইসলামিক নাম">
 <style>
 body {margin:0; font-family: Arial,sans-serif; background:#f0f4f8;}
 header{background:#2563eb; color:white; padding:25px; text-align:center;}
@@ -24,22 +24,29 @@ h2{color:#111827;}
 <body>
 
 <header>
-<h1>বাংলাদেশি বেবি নেম জেনারেটর</h1>
-<p>বাবা ও মায়ের নাম দিয়ে সুন্দর, বাস্তবসম্মত শিশু নাম পেতে এখানে নাম জেনারেট করুন।</p>
+<h1>নবজাতক আরবি নাম জেনারেটর</h1>
+<p>আপনার নাম লিখুন, বাবা না মা সিলেক্ট করুন এবং বেবির লিঙ্গ অনুযায়ী নাম জেনারেট করুন।</p>
 </header>
 
 <div class="container">
 <div class="card">
-<h2>নেম জেনারেটর</h2>
-<label>বাবার নাম:</label>
-<input type="text" id="fatherName" placeholder="বাবার নাম লিখুন">
-<label>মায়ের নাম:</label>
-<input type="text" id="motherName" placeholder="মায়ের নাম লিখুন">
-<label>লিঙ্গ:</label>
-<select id="babyGender">
-<option value="boy">ছেলে</option>
-<option value="girl">মেয়ে</option>
+<h2>নাম জেনারেটর</h2>
+
+<label>আপনার সম্পূর্ণ নাম (বাংলা অক্ষরে):</label>
+<input type="text" id="parentName" placeholder="আপনার নাম লিখুন">
+
+<label>আপনি কোনটি? :</label>
+<select id="parentType">
+  <option value="father">বাবা</option>
+  <option value="mother">মা</option>
 </select>
+
+<label>বেবির লিঙ্গ :</label>
+<select id="babyGender">
+  <option value="boy">ছেলে</option>
+  <option value="girl">মেয়ে</option>
+</select>
+
 <button onclick="generateNames()">নাম জেনারেট করুন</button>
 
 <h3>সাজেশন:</h3>
@@ -48,42 +55,60 @@ h2{color:#111827;}
 </div>
 
 <footer>
-<p>© ২০২৬ বাংলাদেশি বেবি নেম জেনারেটর | সকল অধিকার সংরক্ষিত</p>
+<p>© ২০২৬ নবজাতক আরবি নাম জেনারেটর | সকল অধিকার সংরক্ষিত</p>
 </footer>
 
 <script>
-// Common Bangladeshi name syllables in Bengali
-const syllables = {
-  boy: ["আর","রায়","তান","ইশ","সা","নাফি","রহি","মো","জিয়","হিম","আফি"],
-  girl: ["আ","রাহা","সা","না","মি","নী","রু","সুমি","তাহা","দিবা","ফাহিমা"]
-};
+// Sample 200+ boy & girl Arabic names (shortened for demo, full 200+ replace)
+const boyNames = [
+"আদনান","আমির","আরিফ","ফারহান","ইহসান","জাহিদ","মেহদি","রাহিম","সইফ","ইসমাইল",
+"তামিম","মুজাহিদ","হাকিম","জিয়াদ","সুলেমান","নাহিদ","তাহির","সামির","হাসান","রাশিদ"
+];
+const girlNames = [
+"ফাতিমা","আইশা","সুমাইয়া","রাবেয়া","মাহিন","সাফিয়া","নাজমা","তাহমিনা","হুমায়রা","নূর",
+"জাহানারা","সালমা","আনিসা","রাহিলা","সাবিনা","ফারজানা","নিশাত","হাসিনা","জুমাইনা","রাইয়া"
+];
 
+// Generate function
 function generateNames(){
-  const father = document.getElementById("fatherName").value.trim();
-  const mother = document.getElementById("motherName").value.trim();
-  const gender = document.getElementById("babyGender").value;
-  const resultUl = document.getElementById("nameResults");
+  const parentName = document.getElementById('parentName').value.trim();
+  const parentType = document.getElementById('parentType').value;
+  const babyGender = document.getElementById('babyGender').value;
+  const resultUl = document.getElementById('nameResults');
   resultUl.innerHTML = "";
 
-  if(!father || !mother){
-    alert("দয়া করে বাবা ও মায়ের নাম উভয় লিখুন।");
+  if(!parentName){
+    alert("আপনার নাম লিখুন।");
     return;
   }
 
-  for(let i=0;i<5;i++){
-    const fPart = father.substring(0, Math.min(father.length, Math.floor(Math.random()*Math.ceil(father.length/2))+1));
-    const mPart = mother.substring(Math.floor(Math.random()*Math.floor(mother.length/2)), mother.length);
-    
-    const sylList = gender==="boy"?syllables.boy:syllables.girl;
-    const syl = sylList[Math.floor(Math.random()*sylList.length)];
-    
-    let name = fPart + syl + mPart;
-    name = name.charAt(0) + name.slice(1); // বাংলায় capitalize দরকার নেই
-    
-    const li = document.createElement("li");
-    li.textContent = name;
-    resultUl.appendChild(li);
+  const namesArray = babyGender === "boy"? boyNames : girlNames;
+  const suggestions = [];
+
+  while(suggestions.length < 10){
+    const randomName = namesArray[Math.floor(Math.random()*namesArray.length)];
+    let fullName = "";
+
+    if(parentType==="father" && babyGender==="boy"){
+      fullName = randomName + " ইবনে " + parentName;
+    } else if(parentType==="mother" && babyGender==="girl"){
+      fullName = randomName + " বিনতে " + parentName;
+    } else {
+      // default: just name
+      fullName = randomName;
+    }
+
+    if(!suggestions.includes(fullName)){
+      suggestions.push(fullName);
+    }
   }
+
+  // Display results
+  suggestions.forEach(n=>{
+    const li = document.createElement('li');
+    li.textContent = n;
+    resultUl.appendChild(li);
+  });
 }
 </script>
 
