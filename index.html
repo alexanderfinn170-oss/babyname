@@ -1,154 +1,90 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="bn">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Global Baby Name Generator</title>
-<meta name="description" content="Generate perfect baby names based on parent names. Browse worldwide baby names by country and gender. Free and fast.">
-<meta name="keywords" content="baby names, baby name generator, global baby names, boy names, girl names, parent name generator">
+<title>বাংলাদেশি বেবি নেম জেনারেটর</title>
+<meta name="description" content="বাবা ও মায়ের নাম অনুযায়ী সুন্দর বাংলাদেশের শিশুদের নাম জেনারেট করুন।">
+<meta name="keywords" content="বাংলাদেশি বেবি নাম, বাচ্চার নাম, শিশু নাম, নেম জেনারেটর">
 <style>
-body { margin:0; font-family: Arial,sans-serif; background:#f9f9f9; }
-header{background:#4f46e5;color:white;padding:25px;text-align:center;}
+body {margin:0; font-family: Arial,sans-serif; background:#f0f4f8;}
+header{background:#2563eb; color:white; padding:25px; text-align:center;}
 header h1{margin:0;font-size:2em;}
 header p{margin:5px 0 0;}
-nav{background:#3730a3;padding:10px;text-align:center;}
-nav a{color:white;margin:0 12px;text-decoration:none;font-weight:bold;}
-nav a:hover{text-decoration:underline;}
-.container{max-width:1100px;margin:auto;padding:20px;}
-.card{background:white;padding:20px;margin-bottom:25px;border-radius:8px;box-shadow:0 4px 12px rgba(0,0,0,0.1);}
-input, select{width:100%;padding:10px;margin:10px 0;border:1px solid #ccc;border-radius:5px;}
-button{background:#4f46e5;color:white;border:none;padding:10px 20px;border-radius:5px;cursor:pointer;margin-top:10px;}
-button:hover{background:#4338ca;}
-ul {padding-left:20px;}
-footer{background:#111827;color:white;text-align:center;padding:15px;}
+.container{max-width:700px; margin:auto; padding:20px;}
+.card{background:white; padding:20px; border-radius:8px; box-shadow:0 4px 10px rgba(0,0,0,0.1);}
+input, select{width:100%; padding:10px; margin:10px 0; border:1px solid #ccc; border-radius:5px; font-size:1em;}
+button{background:#2563eb; color:white; border:none; padding:10px 20px; border-radius:5px; cursor:pointer; margin-top:10px; font-size:1em;}
+button:hover{background:#1e40af;}
+ul{padding-left:20px; margin-top:10px;}
+footer{background:#111827;color:white;text-align:center;padding:15px; margin-top:20px;}
 h2{color:#111827;}
 </style>
 </head>
 <body>
 
 <header>
-<h1>Global Baby Name Generator</h1>
-<p>Find perfect baby names worldwide based on parents' names.</p>
+<h1>বাংলাদেশি বেবি নেম জেনারেটর</h1>
+<p>বাবা ও মায়ের নাম দিয়ে সুন্দর, বাস্তবসম্মত শিশু নাম পেতে এখানে নাম জেনারেট করুন।</p>
 </header>
 
-<nav>
-<a href="#generator">Smart Name Generator</a>
-<a href="#countries">Browse by Country</a>
-</nav>
-
 <div class="container">
-
-<!-- Smart Name Generator -->
-<div class="card" id="generator">
-<h2>Smart Baby Name Generator</h2>
-<label>Father's Name:</label>
-<input type="text" id="fatherName" placeholder="Enter father's name">
-<label>Mother's Name:</label>
-<input type="text" id="motherName" placeholder="Enter mother's name">
-<label>Gender:</label>
+<div class="card">
+<h2>নেম জেনারেটর</h2>
+<label>বাবার নাম:</label>
+<input type="text" id="fatherName" placeholder="বাবার নাম লিখুন">
+<label>মায়ের নাম:</label>
+<input type="text" id="motherName" placeholder="মায়ের নাম লিখুন">
+<label>লিঙ্গ:</label>
 <select id="babyGender">
-<option value="boy">Boy</option>
-<option value="girl">Girl</option>
+<option value="boy">ছেলে</option>
+<option value="girl">মেয়ে</option>
 </select>
-<button onclick="generateNames()">Generate Names</button>
-<h3>Suggested Names:</h3>
+<button onclick="generateNames()">নাম জেনারেট করুন</button>
+
+<h3>সাজেশন:</h3>
 <ul id="nameResults"></ul>
 </div>
-
-<!-- Browse by Country -->
-<div class="card" id="countries">
-<h2>Browse Baby Names by Country</h2>
-
-<div>
-<h3>Bangladesh</h3>
-<ul id="bangladeshNames"></ul>
-</div>
-
-<div>
-<h3>USA</h3>
-<ul id="usaNames"></ul>
-</div>
-
-<div>
-<h3>Japan</h3>
-<ul id="japanNames"></ul>
-</div>
-
-<!-- You can add more countries similarly -->
-</div>
-
 </div>
 
 <footer>
-<p>© 2026 Global Baby Name Generator | All Rights Reserved</p>
+<p>© ২০২৬ বাংলাদেশি বেবি নেম জেনারেটর | সকল অধিকার সংরক্ষিত</p>
 </footer>
 
 <script>
-// Sample country-wise names
-const countryNames = {
-  bangladesh: {
-    boy:["Ayaan","Arif","Rayan","Ishaan","Tanvir"],
-    girl:["Ayesha","Nafisa","Sadia","Rumana","Tahmina"]
-  },
-  usa: {
-    boy:["Liam","Noah","Mason","Ethan","Logan"],
-    girl:["Emma","Olivia","Ava","Sophia","Isabella"]
-  },
-  japan: {
-    boy:["Haruto","Yuto","Sota","Yuki","Ren"],
-    girl:["Yui","Hina","Sakura","Mei","Rin"]
-  }
+// Common Bangladeshi name syllables in Bengali
+const syllables = {
+  boy: ["আর","রায়","তান","ইশ","সা","নাফি","রহি","মো","জিয়","হিম","আফি"],
+  girl: ["আ","রাহা","সা","না","মি","নী","রু","সুমি","তাহা","দিবা","ফাহিমা"]
 };
 
-// Populate country lists
-function populateCountryNames(){
-  let bList=document.getElementById("bangladeshNames");
-  countryNames.bangladesh.boy.concat(countryNames.bangladesh.girl).forEach(n=>{
-    let li=document.createElement("li"); li.textContent=n; bList.appendChild(li);
-  });
-
-  let uList=document.getElementById("usaNames");
-  countryNames.usa.boy.concat(countryNames.usa.girl).forEach(n=>{
-    let li=document.createElement("li"); li.textContent=n; uList.appendChild(li);
-  });
-
-  let jList=document.getElementById("japanNames");
-  countryNames.japan.boy.concat(countryNames.japan.girl).forEach(n=>{
-    let li=document.createElement("li"); li.textContent=n; jList.appendChild(li);
-  });
-}
-
-// Smart Name Generator Algorithm
 function generateNames(){
   const father = document.getElementById("fatherName").value.trim();
   const mother = document.getElementById("motherName").value.trim();
   const gender = document.getElementById("babyGender").value;
+  const resultUl = document.getElementById("nameResults");
+  resultUl.innerHTML = "";
 
   if(!father || !mother){
-    alert("Please enter both parents' names."); return;
+    alert("দয়া করে বাবা ও মায়ের নাম উভয় লিখুন।");
+    return;
   }
 
-  let results=[];
-  // Simple algorithm: combine parts of father's and mother's name
   for(let i=0;i<5;i++){
-    let fPart=father.substring(0, Math.min(father.length, Math.floor(Math.random()*Math.floor(father.length/2))+1));
-    let mPart=mother.substring(Math.floor(Math.random()*Math.floor(mother.length/2)), mother.length);
-    let name=fPart+mPart;
-    if(gender=="boy") name=name.charAt(0).toUpperCase()+name.slice(1);
-    else name=name.charAt(0).toUpperCase()+name.slice(1);
-    results.push(name);
+    const fPart = father.substring(0, Math.min(father.length, Math.floor(Math.random()*Math.ceil(father.length/2))+1));
+    const mPart = mother.substring(Math.floor(Math.random()*Math.floor(mother.length/2)), mother.length);
+    
+    const sylList = gender==="boy"?syllables.boy:syllables.girl;
+    const syl = sylList[Math.floor(Math.random()*sylList.length)];
+    
+    let name = fPart + syl + mPart;
+    name = name.charAt(0) + name.slice(1); // বাংলায় capitalize দরকার নেই
+    
+    const li = document.createElement("li");
+    li.textContent = name;
+    resultUl.appendChild(li);
   }
-
-  let ul=document.getElementById("nameResults");
-  ul.innerHTML="";
-  results.forEach(n=>{
-    let li=document.createElement("li"); li.textContent=n;
-    ul.appendChild(li);
-  });
 }
-
-// Initialize country names on page load
-populateCountryNames();
 </script>
 
 </body>
